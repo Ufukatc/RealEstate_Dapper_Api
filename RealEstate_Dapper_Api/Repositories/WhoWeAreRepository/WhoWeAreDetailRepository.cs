@@ -68,6 +68,7 @@ namespace RealEstate_Dapper_Api.Repositories.WhoWeAreRepository
             parameters.Add("@subTitle", updateWhoWeAreDetailDto.Subtitle);
             parameters.Add("@description1", updateWhoWeAreDetailDto.Description1);
             parameters.Add("@description2", updateWhoWeAreDetailDto.Description2);
+            parameters.Add("@whoWeAreDetailID", updateWhoWeAreDetailDto.WhoWeAreDetailID);
             using (var connection = _context.CreateConnection())
             {
                 await connection.ExecuteAsync(query, parameters);

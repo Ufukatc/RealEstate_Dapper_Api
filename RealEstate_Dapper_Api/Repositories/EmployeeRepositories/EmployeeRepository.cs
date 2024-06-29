@@ -34,7 +34,7 @@ namespace RealEstate_Dapper_Api.Repositories.EmployeeRepositories
         {
             string query = "Delete From Employee Where EmployeeID=@employeeID";
             var parameters = new DynamicParameters();
-            parameters.Add("@employeID", id);
+            parameters.Add("@employeeID", id);
             using (var connection = _context.CreateConnection())
             {
                 await connection.ExecuteAsync(query, parameters);

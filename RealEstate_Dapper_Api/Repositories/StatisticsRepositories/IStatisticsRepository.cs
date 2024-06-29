@@ -16,9 +16,9 @@
 
         string CategoryNameByMaxProductCount();
 
-        decimal AverageProductByRent();
+        decimal AverageProductPriceByRent();
 
-        decimal AverageProductBySale();
+        decimal AverageProductPriceBySale();
 
         string CityNameByMaxProductCount();
 

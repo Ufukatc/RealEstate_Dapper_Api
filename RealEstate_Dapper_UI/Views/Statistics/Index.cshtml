@@ -8,7 +8,7 @@
     <div class="row g-4">
         <div class="col-sm-6 col-xl-3">
             <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                <i class="fa fa-chart-line fa-3x text-primary"></i>
+                <i class="fa fa-toggle-on fa-3x text-primary"></i>
                 <div class="ms-3">
                     <p class="mb-2">Aktif Kategori</p>
                     <h6 class="mb-0">@ViewBag.activeCategoryCount</h6>
@@ -17,7 +17,7 @@
         </div>
         <div class="col-sm-6 col-xl-3">
             <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                <i class="fa fa-chart-bar fa-3x text-primary"></i>
+                <i class="fa fa-users fa-3x text-primary"></i>
                 <div class="ms-3">
                     <p class="mb-2">Aktif Personel</p>
                     <h6 class="mb-0">@ViewBag.activeEmployeeCount</h6>
@@ -26,7 +26,7 @@
         </div>
         <div class="col-sm-6 col-xl-3">
             <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                <i class="fa fa-chart-area fa-3x text-primary"></i>
+                <i class="fa fa-home fa-3x text-primary"></i>
                 <div class="ms-3">
                     <p class="mb-2">Daire İlan Sayısı</p>
                     <h6 class="mb-0">@ViewBag.apartmentCount</h6>
@@ -35,9 +35,9 @@
         </div>
         <div class="col-sm-6 col-xl-3">
             <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                <i class="fa fa-chart-pie fa-3x text-primary"></i>
+                <i class="fa fa-credit-card fa-3x text-primary"></i>
                 <div class="ms-3">
-                    <p class="mb-2">Ortalama Kira Fiyatı</p>
+                    <p class="mb-2">Ortalama Kira</p>
                     <h6 class="mb-0">@ViewBag.averageProductPriceByRent</h6>
                 </div>
             </div>
@@ -49,9 +49,9 @@
     <div class="row g-4">
         <div class="col-sm-6 col-xl-3">
             <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                <i class="fa fa-chart-line fa-3x text-primary"></i>
+                <i class="fa fa-barcode fa-3x text-primary"></i>
                 <div class="ms-3">
-                    <p class="mb-2">Ortalama Satış Fiyatı</p>
+                    <p class="mb-2">Ortalama Satış F.</p>
                     <h6 class="mb-0">@ViewBag.averageProductPriceBySale</h6>
                 </div>
             </div>
@@ -60,14 +60,14 @@
             <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
                 <i class="fa fa-chart-bar fa-3x text-primary"></i>
                 <div class="ms-3">
-                    <p class="mb-2">Ortalama Oda Sayısı</p>
+                    <p class="mb-2">Ortalama Oda S.</p>
                     <h6 class="mb-0">@ViewBag.averageRoomCount</h6>
                 </div>
             </div>
         </div>
         <div class="col-sm-6 col-xl-3">
             <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                <i class="fa fa-chart-area fa-3x text-primary"></i>
+                <i class="fa fa-list-ul fa-3x text-primary"></i>
                 <div class="ms-3">
                     <p class="mb-2">Kategori Sayısı</p>
                     <h6 class="mb-0">@ViewBag.categoryCount</h6>
@@ -78,7 +78,7 @@
             <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
                 <i class="fa fa-chart-pie fa-3x text-primary"></i>
                 <div class="ms-3">
-                    <p class="mb-2">En Çok İlan Olan Kategori</p>
+                    <p class="mb-2">En İyi Kategori</p>
                     <h6 class="mb-0">@ViewBag.categoryNameByMaxProductCount</h6>
                 </div>
             </div>
@@ -90,34 +90,34 @@
     <div class="row g-4">
         <div class="col-sm-6 col-xl-3">
             <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                <i class="fa fa-chart-line fa-3x text-primary"></i>
+                <i class="fa fa-heart fa-3x text-primary"></i>
                 <div class="ms-3">
-                    <p class="mb-2">En Çok İlan Olan Şehir</p>
+                    <p class="mb-2">İlan - Şehir</p>
                     <h6 class="mb-0">@ViewBag.cityNameByMaxProductCount</h6>
                 </div>
             </div>
         </div>
         <div class="col-sm-6 col-xl-3">
             <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                <i class="fa fa-chart-bar fa-3x text-primary"></i>
+                <i class="fa fa-flag fa-3x text-primary"></i>
                 <div class="ms-3">
-                    <p class="mb-2">Toplam Şehir Sayısı</p>
+                    <p class="mb-2">Şehir Sayısı</p>
                     <h6 class="mb-0">@ViewBag.differentCityCount</h6>
                 </div>
             </div>
         </div>
         <div class="col-sm-6 col-xl-3">
             <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                <i class="fa fa-chart-area fa-3x text-primary"></i>
+                <i class="fa fa-star fa-3x text-primary"></i>
                 <div class="ms-3">
-                    <p class="mb-2">En Çok İlan Veren Personel</p>
+                    <p class="mb-2">En İyi Personel</p>
                     <h6 class="mb-0">@ViewBag.employeeNameByMaxProductCount</h6>
                 </div>
             </div>
         </div>
         <div class="col-sm-6 col-xl-3">
             <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                <i class="fa fa-chart-pie fa-3x text-primary"></i>
+                <i class="fa fa-history fa-3x text-primary"></i>
                 <div class="ms-3">
                     <p class="mb-2">Son İlanın Fiyatı</p>
                     <h6 class="mb-0">@ViewBag.lastProductPrice</h6>
@@ -131,36 +131,36 @@
     <div class="row g-4">
         <div class="col-sm-6 col-xl-3">
             <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                <i class="fa fa-chart-line fa-3x text-primary"></i>
+                <i class="fa fa-battery-full fa-3x text-primary"></i>
                 <div class="ms-3">
-                    <p class="mb-2">En Yeni Binanın Yapım Yılı</p>
+                    <p class="mb-2">En Yeni Bina Yılı</p>
                     <h6 class="mb-0">@ViewBag.newestBuildingYear</h6>
                 </div>
             </div>
         </div>
         <div class="col-sm-6 col-xl-3">
             <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                <i class="fa fa-chart-bar fa-3x text-primary"></i>
+                <i class="fa fa-battery-half fa-3x text-primary"></i>
                 <div class="ms-3">
-                    <p class="mb-2">En Eski Binanın Yapım Yılı</p>
+                    <p class="mb-2">En Eski Bina Yılı</p>
                     <h6 class="mb-0">@ViewBag.oldestBuildingYear</h6>
                 </div>
             </div>
         </div>
         <div class="col-sm-6 col-xl-3">
             <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                <i class="fa fa-chart-area fa-3x text-primary"></i>
+                <i class="fa fa-bed fa-3x text-primary"></i>
                 <div class="ms-3">
-                    <p class="mb-2">Pasif Kategori Sayısı</p>
+                    <p class="mb-2">Pasif Kategori</p>
                     <h6 class="mb-0">@ViewBag.passiveCategoryCount</h6>
                 </div>
             </div>
         </div>
         <div class="col-sm-6 col-xl-3">
             <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                <i class="fa fa-chart-pie fa-3x text-primary"></i>
+                <i class="fa fa-key fa-3x text-primary"></i>
                 <div class="ms-3">
-                    <p class="mb-2">İlan Sayısı</p>
+                    <p class="mb-2">Toplam İlan</p>
                     <h6 class="mb-0">@ViewBag.productCount</h6>
                 </div>
             </div>

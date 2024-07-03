@@ -47,7 +47,7 @@ namespace RealEstate_Dapper_UI.Controllers
 
                     if (tokenModel.Token!=null)
                     {
-                        claims.Add(new Claim("realestatetoken",tokenModel.Token));
+                        claims.Add(new Claim("aticigayrimenkultoken", tokenModel.Token));
                         var claimsIdentity = new ClaimsIdentity(claims, JwtBearerDefaults.AuthenticationScheme);
                         var authProps = new AuthenticationProperties
                         {
@@ -56,7 +56,7 @@ namespace RealEstate_Dapper_UI.Controllers
                         };
 
                         await HttpContext.SignInAsync(JwtBearerDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProps);
-                        return RedirectToAction("Index", "MyAdverts");
+                        return RedirectToAction("Index", "Employee");
                     }
                 }
             }

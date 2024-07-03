@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using RealEstate_Dapper_UI.Services;
+using System.IdentityModel.Tokens.Jwt;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +16,12 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddCo
     opt.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
     opt.Cookie.Name = "AticiGayrimenkulJwt";
 });
+
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<ILoginService, LoginService>();
+
+JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Remove("sub");
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

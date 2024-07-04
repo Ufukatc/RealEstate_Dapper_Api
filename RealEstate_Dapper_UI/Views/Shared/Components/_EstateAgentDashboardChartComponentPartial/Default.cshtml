@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<body>
+
+    <canvas id="myChart" style="width:100%;max-width:500px"></canvas>
+
+    <script>
+        const xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
+        const yValues = [55, 49, 44, 24, 15];
+        const backColors = ["rgba(54, 162, 235, 1)", "rgba(54, 162, 235, 0.8)", "rgba(54, 162, 235, 0.6)", "rgba(54, 162, 235, 0.4)", "rgba(54, 162, 235, 0.2)"];
+        const barColors = ["rgba(54, 162, 235, 1)","rgba(54, 162, 235, 1)","rgba(54, 162, 235, 1)","rgba(54, 162, 235, 1)","rgba(54, 162, 235, 1)"];
+        const ctx = document.getElementById('myChart').getContext('2d');
+
+        const myChart = new Chart(ctx, {
+            type: "bar",
+            data: {
+                labels: xValues,
+                datasets: [{
+                    backgroundColor: backColors,
+                    borderColor: barColors,
+                    data: yValues
+                }]
+            },
+            options: {
+                legend: { display: false },
+                title: {
+                    display: true,
+                    text: "Şehir - İlan İstatistiği"
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+
+

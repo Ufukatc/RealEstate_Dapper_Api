@@ -58,6 +58,14 @@ namespace RealEstate_Dapper_UI.Controllers
             ViewBag.location = values2.location;
             ViewBag.videoUrl = values2.videoUrl;
 
+            DateTime date1 = DateTime.Now;
+            DateTime date2 = values.advertisementDate;
+            TimeSpan timeSpan = date1 - date2;
+            int days = timeSpan.Days;
+
+            ViewBag.datediff = days / 30;
+            
+            
 
             return View();
         }

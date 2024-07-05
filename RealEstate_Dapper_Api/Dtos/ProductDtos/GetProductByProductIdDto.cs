@@ -12,6 +12,8 @@
 
         public string District { get; set; }
 
+        public string Description { get; set; }
+
         public string CategoryName { get; set; }
 
         public string CoverImage { get; set; }

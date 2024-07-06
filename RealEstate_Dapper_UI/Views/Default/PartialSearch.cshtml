@@ -1,4 +1,4 @@
-﻿@model List<ResultCategoryDto>
+﻿@* @model List<ResultCategoryDto>
 <section class="w3l-cover-3">
     <div class="cover top-bottom">
         <div class="container">
@@ -15,9 +15,9 @@
                         </ul>
                     </div>
                     <form asp-action="PartialSearch" asp-controller="Default" class="w3l-cover-3-gd" method="post">
-                        <input type="search" name="p" placeholder="Anahtar Kelimeyi Girin" required>
+                        <input type="search" name="searchKeyValue" placeholder="Anahtar Kelimeyi Girin" required>
                         <span class="input-group-btn">
-                            <select class="btn btn-default" name="ext" required>
+                            <select class="btn btn-default" name="propertyCategoryId" required>
                                 <option selected="">Gayrimenkul Türü</option>
                                 @foreach(var item in Model)
                                 {
@@ -26,7 +26,7 @@
                             </select>
                         </span>
                         <span class="input-group-btn">
-                            <select class="btn btn-default" name="y" required>
+                            <select class="btn btn-default" name="city" required>
                                 <option selected="">Şehir Seçiniz</option>
                                 <option>İstanbul</option>
                                 <option>Ankara</option>
@@ -46,4 +46,4 @@
             </div>
         </div>
     </div>
-</section>
+</section> *@

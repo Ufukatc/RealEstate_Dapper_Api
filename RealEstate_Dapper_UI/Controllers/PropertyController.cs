@@ -1,23 +1,28 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using RealEstate_Dapper_UI.Dtos.ProductDetailDtos;
 using RealEstate_Dapper_UI.Dtos.ProductDtos;
+using RealEstate_Dapper_UI.Models;
 
 namespace RealEstate_Dapper_UI.Controllers
 {
     public class PropertyController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
+        private readonly ApiSettings _apiSettings;
 
-        public PropertyController(IHttpClientFactory httpClientFactory)
+        public PropertyController(IHttpClientFactory httpClientFactory, IOptions<ApiSettings> apiSettings)
         {
             _httpClientFactory = httpClientFactory;
+            _apiSettings = apiSettings.Value;
         }
 
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:44327/api/Products/ProductListWithCategory");
+            client.BaseAddress = new Uri(_apiSettings.BaseUrl);
+            var responseMessage = await client.GetAsync("Products/ProductListWithCategory");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -33,7 +38,8 @@ namespace RealEstate_Dapper_UI.Controllers
             propertyCategoryId = int.Parse(TempData["propertyCategoryId"].ToString());
             city = TempData["city"].ToString();
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync($"https://localhost:44327/api/Products/ResultProductWithSearchList?searchKeyValue={searchKeyValue}&propertyCategoryId={propertyCategoryId}&city={city}");
+            client.BaseAddress = new Uri(_apiSettings.BaseUrl);
+            var responseMessage = await client.GetAsync($"Products/ResultProductWithSearchList?searchKeyValue={searchKeyValue}&propertyCategoryId={propertyCategoryId}&city={city}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -47,14 +53,16 @@ namespace RealEstate_Dapper_UI.Controllers
         [HttpGet]
         public async Task<IActionResult> PropertySingle(int id)
         {
-            id = 1;
+            ViewBag.i = id;
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:44327/api/Products/GetProductByProductId?id=" + id);
+            client.BaseAddress = new Uri(_apiSettings.BaseUrl);
+            var responseMessage = await client.GetAsync("Products/GetProductByProductId?id=" + id);
             var jsonData = await responseMessage.Content.ReadAsStringAsync();
             var values = JsonConvert.DeserializeObject<ResultProductDto>(jsonData);
 
             var client2 = _httpClientFactory.CreateClient();
-            var responseMessage2 = await client2.GetAsync("https://localhost:44327/api/ProductDetails/GetProductDetailByProductId?id=" + id);
+            client2.BaseAddress = new Uri(_apiSettings.BaseUrl);
+            var responseMessage2 = await client2.GetAsync("ProductDetails/GetProductDetailByProductId?id=" + id);
             var jsonData2 = await responseMessage2.Content.ReadAsStringAsync();
             var values2 = JsonConvert.DeserializeObject<GetProductDetailByIdDto>(jsonData2);
 

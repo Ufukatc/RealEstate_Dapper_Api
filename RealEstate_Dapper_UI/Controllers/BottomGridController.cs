@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using RealEstate_Dapper_UI.Dtos.BottomGridDtos;
+using RealEstate_Dapper_UI.Models;
 using System.Text;
 
 namespace RealEstate_Dapper_UI.Controllers
@@ -8,16 +10,19 @@ namespace RealEstate_Dapper_UI.Controllers
     public class BottomGridController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
+        private readonly ApiSettings _apiSettings;
 
-        public BottomGridController(IHttpClientFactory httpClientFactory)
+        public BottomGridController(IHttpClientFactory httpClientFactory, IOptions<ApiSettings> apiSettings)
         {
             _httpClientFactory = httpClientFactory;
+            _apiSettings = apiSettings.Value;
         }
 
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:44327/api/BottomGrids");
+            client.BaseAddress = new Uri(_apiSettings.BaseUrl);
+            var responseMessage = await client.GetAsync("BottomGrids");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -37,9 +42,10 @@ namespace RealEstate_Dapper_UI.Controllers
         public async Task<IActionResult> CreateBottomGrid(CreateBottomGridDto createBottomGridDto)
         {
             var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_apiSettings.BaseUrl);
             var jsonData = JsonConvert.SerializeObject(createBottomGridDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("https://localhost:44327/api/BottomGrids", stringContent);
+            var responseMessage = await client.PostAsync("BottomGrids", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -50,7 +56,8 @@ namespace RealEstate_Dapper_UI.Controllers
         public async Task<IActionResult> DeleteBottomGrid(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.DeleteAsync($"https://localhost:44327/api/BottomGrids/{id}");
+            client.BaseAddress = new Uri(_apiSettings.BaseUrl);
+            var responseMessage = await client.DeleteAsync($"BottomGrids/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -62,7 +69,8 @@ namespace RealEstate_Dapper_UI.Controllers
         public async Task<IActionResult> UpdateBottomGrid(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync($"https://localhost:44327/api/BottomGrids/{id}");
+            client.BaseAddress = new Uri(_apiSettings.BaseUrl);
+            var responseMessage = await client.GetAsync($"BottomGrids/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -76,9 +84,10 @@ namespace RealEstate_Dapper_UI.Controllers
         public async Task<IActionResult> UpdateBottomGrid(UpdateBottomGridDto updateBottomGridDto)
         {
             var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_apiSettings.BaseUrl);
             var jsonData = JsonConvert.SerializeObject(updateBottomGridDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PutAsync("https://localhost:44327/api/BottomGrids/", stringContent);
+            var responseMessage = await client.PutAsync("BottomGrids/", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");

@@ -15,8 +15,8 @@ namespace RealEstate_Dapper_Api.Tools
             
             claims.Add(new Claim(ClaimTypes.NameIdentifier,model.Id.ToString()));
 
-            if(!string.IsNullOrWhiteSpace(model.Username))
-                claims.Add(new Claim("Username",model.Username));
+            if(!string.IsNullOrWhiteSpace(model.Email))
+                claims.Add(new Claim("Email",model.Email));
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtTokenDefaults.Key));
             var signingCredentials = new SigningCredentials(key,SecurityAlgorithms.HmacSha256);

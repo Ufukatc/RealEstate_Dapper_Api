@@ -13,17 +13,17 @@ namespace RealEstate_Dapper_Api.Repositories.ContactRepositories
             _context = context;
         }
 
-        public void CreateContact(CreateContactDto createContactDto)
+        public Task CreateContact(CreateContactDto createContactDto)
         {
             throw new NotImplementedException();
         }
 
-        public void DeleteContact(int id)
+        public Task DeleteContact(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<List<ResultContactDto>> GetAllContactAsync()
+        public Task<List<ResultContactDto>> GetAllContact()
         {
             throw new NotImplementedException();
         }

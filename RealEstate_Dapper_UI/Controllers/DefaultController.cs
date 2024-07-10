@@ -35,6 +35,7 @@ namespace RealEstate_Dapper_UI.Controllers
         public async Task<PartialViewResult> PartialSearch()
         {
             var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_apiSettings.BaseUrl);
             var responseMessage = await client.GetAsync("Categories");
             if (responseMessage.IsSuccessStatusCode)
             {

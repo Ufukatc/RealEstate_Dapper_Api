@@ -46,6 +46,16 @@ namespace RealEstate_Dapper_Api.Repositories.CategoryRepository
             }
         }
 
+        public async Task<List<ResultGetCategoryByStatusTrueDto>> GetCategoryByStatusTrue()
+        {
+            string query = "Select * From Category Where CategoryStatus = 1";
+            using (var connection = _context.CreateConnection())
+            {
+                var values = await connection.QueryAsync<ResultGetCategoryByStatusTrueDto>(query);
+                return values.ToList();
+            }
+        }
+
         public async Task<GetByIDCategoryDto> GetCategory(int id)
         {
             string query = "Select * From Category Where CategoryID=@categoryID";

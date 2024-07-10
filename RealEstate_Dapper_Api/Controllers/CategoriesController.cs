@@ -23,6 +23,13 @@ namespace RealEstate_Dapper_Api.Controllers
             return Ok(values);
         }
 
+        [HttpGet("CategoryListByStatusTrue")]
+        public async Task<IActionResult> CategoryListByStatusTrue()
+        {
+            var values = await _categoryRepository.GetCategoryByStatusTrue();
+            return Ok(values);
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreateCategory(CreateCategoryDto createCategoryDto)
         {

@@ -38,7 +38,7 @@ namespace RealEstate_Dapper_Api.Repositories.PopularLocationRepositories
 
         public async Task<List<ResultPopularLocationDto>> GetAllPopularLocation()
         {
-            string query = "Select * From PopularLocation";
+            string query = "Select Top(4)* From PopularLocation Order by PropertyCount Desc";
             using (var connection = _context.CreateConnection())
             {
                 var values = await connection.QueryAsync<ResultPopularLocationDto>(query);

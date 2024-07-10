@@ -1,4 +1,5 @@
-﻿@* @model List<ResultCategoryDto>
+﻿@model List<ResultCategoryDto>
+
 <section class="w3l-cover-3">
     <div class="cover top-bottom">
         <div class="container">
@@ -18,8 +19,8 @@
                         <input type="search" name="searchKeyValue" placeholder="Anahtar Kelimeyi Girin" required>
                         <span class="input-group-btn">
                             <select class="btn btn-default" name="propertyCategoryId" required>
-                                <option selected="">Gayrimenkul Türü</option>
-                                @foreach(var item in Model)
+                                <option value="" disabled selected>Gayrimenkul Türü</option>
+                                @foreach (var item in Model)
                                 {
                                     <option value="@item.CategoryID">@item.CategoryName</option>
                                 }
@@ -27,14 +28,13 @@
                         </span>
                         <span class="input-group-btn">
                             <select class="btn btn-default" name="city" required>
-                                <option selected="">Şehir Seçiniz</option>
-                                <option>İstanbul</option>
-                                <option>Ankara</option>
-                                <option>Eskişehir</option>
-                                <option>Kütahya</option>
-                                <option>İzmir</option>
-                                <option>Bursa</option>
-                                <option>Afyon</option>
+                                <option value="" disabled selected>Şehir Seçiniz</option>
+
+                                @foreach (var item in Model)
+                                {
+                                    <option value="İstanbul">İstanbul</option>
+                                }
+                                
                             </select>
                         </span>
                         <button type="submit" class="btn-primary">Ara</button>
@@ -46,4 +46,4 @@
             </div>
         </div>
     </div>
-</section> *@
+</section>

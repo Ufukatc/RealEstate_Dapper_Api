@@ -12,6 +12,7 @@ using RealEstate_Dapper_Api.Repositories.PopularLocationRepositories;
 using RealEstate_Dapper_Api.Repositories.ProductImageRepositories;
 using RealEstate_Dapper_Api.Repositories.ProductRepository;
 using RealEstate_Dapper_Api.Repositories.PropertyAmenityRepositories;
+using RealEstate_Dapper_Api.Repositories.SearchListRepositories;
 using RealEstate_Dapper_Api.Repositories.ServiceRepository;
 using RealEstate_Dapper_Api.Repositories.StatisticsRepositories;
 using RealEstate_Dapper_Api.Repositories.SubFeatureRepositories;
@@ -46,6 +47,7 @@ namespace RealEstate_Dapper_Api.Containers
             services.AddTransient<IAppUserRepository, AppUserRepository>();
             services.AddTransient<IPropertyAmenityRepository, PropertyAmenityRepository>();
             services.AddTransient<ISubFeatureRepository, SubFeatureRepository>();
+            services.AddTransient<ISearchListRepository, SearchListRepository>();
         }
     }
 }

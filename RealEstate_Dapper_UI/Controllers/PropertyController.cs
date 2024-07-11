@@ -106,7 +106,6 @@ namespace RealEstate_Dapper_UI.Controllers
             title = System.Text.RegularExpressions.Regex.Replace(title, @"\s+", " ").Trim();
             title = System.Text.RegularExpressions.Regex.Replace(title, @"\s", "-");
             return title;
-
         }
     }
 }

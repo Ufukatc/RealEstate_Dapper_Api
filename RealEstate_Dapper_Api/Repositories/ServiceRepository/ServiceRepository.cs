@@ -1,7 +1,5 @@
 ﻿using Dapper;
-using RealEstate_Dapper_Api.Dtos.CategoryDtos;
 using RealEstate_Dapper_Api.Dtos.ServiceDtos;
-using RealEstate_Dapper_Api.Dtos.WhoWeAreDetailDtos;
 using RealEstate_Dapper_Api.Models.DapperContext;
 
 namespace RealEstate_Dapper_Api.Repositories.ServiceRepository
@@ -17,10 +15,10 @@ namespace RealEstate_Dapper_Api.Repositories.ServiceRepository
 
         public async Task CreateService(CreateServiceDto createServiceDto)
         {
-            string query = "insert into Service (ServiceName, ServiceStatus) values (@serviceName,@serviceStatus)";
+            string query = "insert into Services (Name, Status) values (@name,@status)";
             var parameters = new DynamicParameters();
-            parameters.Add("@serviceName", createServiceDto.ServiceName);
-            parameters.Add("@serviceStatus", true);
+            parameters.Add("@name", createServiceDto.Name);
+            parameters.Add("@status", true);
             using (var connection = _context.CreateConnection())
             {
                 await connection.ExecuteAsync(query, parameters);
@@ -29,7 +27,7 @@ namespace RealEstate_Dapper_Api.Repositories.ServiceRepository
 
         public async Task DeleteService(int id)
         {
-            string query = "Delete From Service Where ServiceID=@serviceID";
+            string query = "Delete From Services Where ServiceID=@serviceID";
             var parameters = new DynamicParameters();
             parameters.Add("@serviceID", id);
             using (var connection = _context.CreateConnection())
@@ -40,7 +38,7 @@ namespace RealEstate_Dapper_Api.Repositories.ServiceRepository
 
         public async Task<List<ResultServiceDto>> GetAllService()
         {
-            string query = "Select * From Service";
+            string query = "Select * From Services";
             using (var connection = _context.CreateConnection())
             {
                 var values = await connection.QueryAsync<ResultServiceDto>(query);
@@ -50,7 +48,7 @@ namespace RealEstate_Dapper_Api.Repositories.ServiceRepository
 
         public async Task<GetByIDServiceDto> GetService(int id)
         {
-            string query = "Select * From Service Where ServiceID=@serviceID";
+            string query = "Select * From Services Where ServiceID=@serviceID";
             var parameters = new DynamicParameters();
             parameters.Add("@serviceID", id);
             using (var connection = _context.CreateConnection())
@@ -62,10 +60,10 @@ namespace RealEstate_Dapper_Api.Repositories.ServiceRepository
 
         public async Task UpdateService(UpdateServiceDto updateServiceDto)
         {
-            string query = "Update Service Set ServiceName=@serviceName, ServiceStatus=@serviceStatus Where ServiceID=@serviceID";
+            string query = "Update Services Set Name=@name, Status=@status Where ServiceID=@serviceID";
             var parameters = new DynamicParameters();
-            parameters.Add("@serviceName", updateServiceDto.ServiceName);
-            parameters.Add("@serviceStatus", updateServiceDto.ServiceStatus);
+            parameters.Add("@name", updateServiceDto.Name);
+            parameters.Add("@status", updateServiceDto.Status);
             parameters.Add("@serviceID", updateServiceDto.ServiceID);
             using (var connection = _context.CreateConnection())
             {

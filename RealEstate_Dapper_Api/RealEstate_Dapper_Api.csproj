@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <Folder Include="Dtos\AmenityDtos\" />
+    <Folder Include="Dtos\AppUserDtos\" />
   </ItemGroup>
 
 </Project>

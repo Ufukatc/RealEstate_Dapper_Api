@@ -1,17 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
-using RealEstate_Dapper_UI.Dtos.ProductDtos;
+using RealEstate_Dapper_UI.Dtos.PropertyDtos;
 using RealEstate_Dapper_UI.Models;
 
 namespace RealEstate_Dapper_UI.ViewComponents.HomePage
 {
-    public class _DefaultHomePageProductList:ViewComponent
+    public class _DefaultHomePagePropertyList:ViewComponent
     {
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly ApiSettings _apiSettings;
 
-        public _DefaultHomePageProductList(IHttpClientFactory httpClientFactory, IOptions<ApiSettings> apiSettings)
+        public _DefaultHomePagePropertyList(IHttpClientFactory httpClientFactory, IOptions<ApiSettings> apiSettings)
         {
             _httpClientFactory = httpClientFactory;
             _apiSettings = apiSettings.Value;
@@ -21,11 +21,11 @@ namespace RealEstate_Dapper_UI.ViewComponents.HomePage
         {
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri(_apiSettings.BaseUrl);
-            var responseMessage = await client.GetAsync("Products/ProductByDealOfTheDayTrueWithCategoryList");
+            var responseMessage = await client.GetAsync("Propertys/PropertyByOpportunityOfTheDayTrueWithCategoryList");
             if (responseMessage.IsSuccessStatusCode) 
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultProductDto>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<ResultPropertyDto>>(jsonData);
                 return View(values);
             }
             return View();

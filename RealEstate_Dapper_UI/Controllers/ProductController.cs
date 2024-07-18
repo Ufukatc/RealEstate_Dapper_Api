@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
-using RealEstate_Dapper_UI.Dtos.CategoryDtos;
-using RealEstate_Dapper_UI.Dtos.ProductDtos;
+using RealEstate_Dapper_UI.Dtos.CategoriesDtos;
+using RealEstate_Dapper_UI.Dtos.PropertyDtos;
 using RealEstate_Dapper_UI.Models;
 
 namespace RealEstate_Dapper_UI.Controllers
@@ -23,17 +23,17 @@ namespace RealEstate_Dapper_UI.Controllers
         {
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri(_apiSettings.BaseUrl);
-            var responseMessage = await client.GetAsync("Products/ProductListWithCategory");
+            var responseMessage = await client.GetAsync("Propertys/PropertyListWithCategory");
             if (responseMessage.IsSuccessStatusCode) 
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultProductDto>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<ResultPropertyDto>>(jsonData);
                 return View(values);
             }
             return View();
         }
         [HttpGet]
-        public async Task<IActionResult> CreateProduct()
+        public async Task<IActionResult> CreateProperty()
         {
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri(_apiSettings.BaseUrl);
@@ -51,11 +51,11 @@ namespace RealEstate_Dapper_UI.Controllers
             return View();
         }
 
-        public async Task<IActionResult> ProductDealOfTheDayStatusChangeToFalse(int id)
+        public async Task<IActionResult> PropertyDealOfTheDayStatusChangeToFalse(int id)
         {
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri(_apiSettings.BaseUrl);
-            var responseMessage = await client.GetAsync("Products/ProductDealOfTheDayStatusChangeToFalse/" + id);
+            var responseMessage = await client.GetAsync("Propertys/PropertyOpportunityOfTheDayStatusChangeToFalse/" + id);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -63,11 +63,11 @@ namespace RealEstate_Dapper_UI.Controllers
             return View();
         }
 
-        public async Task<IActionResult> ProductDealOfTheDayStatusChangeToTrue(int id)
+        public async Task<IActionResult> PropertyDealOfTheDayStatusChangeToTrue(int id)
         {
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri(_apiSettings.BaseUrl);
-            var responseMessage = await client.GetAsync("Products/ProductDealOfTheDayStatusChangeToTrue/" + id);
+            var responseMessage = await client.GetAsync("Propertys/PropertyOpportunityOfTheDayStatusChangeToTrue/" + id);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");

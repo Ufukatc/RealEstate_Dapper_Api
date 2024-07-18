@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-using NuGet.Configuration;
 using RealEstate_Dapper_UI.Models;
 
 namespace RealEstate_Dapper_UI.Controllers

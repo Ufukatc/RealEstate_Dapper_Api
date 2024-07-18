@@ -1,28 +1,32 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
-using RealEstate_Dapper_UI.Dtos.AppUserDtos;
-using RealEstate_Dapper_UI.Dtos.PropertyImageDtos;
+using RealEstate_Dapper_UI.Dtos.EmployeeDtos;
+using RealEstate_Dapper_UI.Models;
 
 namespace RealEstate_Dapper_UI.ViewComponents.PropertySingle
 {
     public class _PropertyAppUserComponentPartial:ViewComponent
     {
         private readonly IHttpClientFactory _httpClientFactory;
+        private readonly ApiSettings _apiSettings;
 
-        public _PropertyAppUserComponentPartial(IHttpClientFactory httpClientFactory)
+        public _PropertyAppUserComponentPartial(IHttpClientFactory httpClientFactory, IOptions<ApiSettings> apiSettings)
         {
             _httpClientFactory = httpClientFactory;
+            _apiSettings = apiSettings.Value;
         }
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
             int id = 1;
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:44327/api/AppUsers?id=" + id);
+            client.BaseAddress = new Uri(_apiSettings.BaseUrl);
+            var responseMessage = await client.GetAsync("Employees?id=" + id);
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<GetAppUserByProductIdDto>(jsonData);
+                var values = JsonConvert.DeserializeObject<GetEmployeeByProductIdDto>(jsonData);
                 return View(values);
             }
             return View();

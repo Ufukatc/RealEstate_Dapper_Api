@@ -1,5 +1,4 @@
 ﻿using Dapper;
-using Microsoft.AspNetCore.Mvc;
 using RealEstate_Dapper_Api.Dtos.SubFeatureDtos;
 using RealEstate_Dapper_Api.Models.DapperContext;
 

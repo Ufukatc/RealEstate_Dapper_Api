@@ -21,7 +21,7 @@ namespace RealEstate_Dapper_UI.ViewComponents.PropertySingle
         {
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri(_apiSettings.BaseUrl);
-            var responseMessage = await client.GetAsync("ProductImages?id=" + id);
+            var responseMessage = await client.GetAsync("PropertyImages?id=" + id);
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();

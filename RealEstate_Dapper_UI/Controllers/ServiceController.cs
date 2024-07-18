@@ -41,7 +41,7 @@ namespace RealEstate_Dapper_UI.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateService(CreateServiceDto createServiceDto)
         {
-            createServiceDto.ServiceStatus = true;
+            createServiceDto.Status = true;
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri(_apiSettings.BaseUrl);
             var jsonData = JsonConvert.SerializeObject(createServiceDto);

@@ -18,7 +18,7 @@ namespace RealEstate_Dapper_Api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAppUserByProductId(int id)
         {
-            var value = await _appUserRepository.GetAppUserByProductId(id);
+            var value = await _appUserRepository.GetEmployeeByPropertyId(id);
             return Ok(value);
         }
     }

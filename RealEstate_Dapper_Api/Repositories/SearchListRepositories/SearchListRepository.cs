@@ -15,7 +15,7 @@ namespace RealEstate_Dapper_Api.Repositories.SearchListRepositories
 
         public async Task<List<ResultMostSearchesDto>> Get3MostSearches()
         {
-            string query = "Select Top(3) CityName From PopularLocation Order by PropertyCount desc";
+            string query = "Select Top(3) City From Locations Order by PropertyCount desc";
             using (var connection = _context.CreateConnection())
             {
                 var values = await connection.QueryAsync<ResultMostSearchesDto>(query);
@@ -25,7 +25,7 @@ namespace RealEstate_Dapper_Api.Repositories.SearchListRepositories
 
         public async Task<List<ResultSearchWithCitiesDto>> GetSearchWithCities()
         {
-            string query = "SELECT DISTINCT CityName FROM PopularLocation;";
+            string query = "SELECT DISTINCT City FROM Locations;";
             using (var connection = _context.CreateConnection())
             {
                 var values = await connection.QueryAsync<ResultSearchWithCitiesDto>(query);
@@ -35,7 +35,7 @@ namespace RealEstate_Dapper_Api.Repositories.SearchListRepositories
 
         public async Task<List<ResultSearchCategoryDto>> GetSearchWithCategories()
         {
-            string query = "Select * From Category Where CategoryStatus = 1 Order by CategoryName asc";
+            string query = "Select * From Categories Where CategoryStatus = 1 Order by CategoryName asc";
             using (var connection = _context.CreateConnection())
             {
                 var values = await connection.QueryAsync<ResultSearchCategoryDto>(query);

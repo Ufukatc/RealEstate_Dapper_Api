@@ -1,5 +1,5 @@
 ﻿using Dapper;
-using RealEstate_Dapper_Api.Dtos.AppUserDtos;
+using RealEstate_Dapper_Api.Dtos.EmployeeDtos;
 using RealEstate_Dapper_Api.Models.DapperContext;
 
 namespace RealEstate_Dapper_Api.Repositories.AppUserRepositories
@@ -13,14 +13,14 @@ namespace RealEstate_Dapper_Api.Repositories.AppUserRepositories
             _context = context;
         }
 
-        public async Task<GetAppUserByProductIdDto> GetAppUserByProductId(int id)
+        public async Task<GetEmployeeByPropertyIdDto> GetEmployeeByPropertyId(int id)
         {
-            string query = "Select * From AppUser Where UserID=@userID";
+            string query = "Select * From Employees Where EmployeeID=@employeeID";
             var parameters = new DynamicParameters();
-            parameters.Add("@userID", id);
+            parameters.Add("@employeeID", id);
             using (var connection = _context.CreateConnection())
             {
-                var values = await connection.QueryFirstOrDefaultAsync<GetAppUserByProductIdDto>(query, parameters);
+                var values = await connection.QueryFirstOrDefaultAsync<GetEmployeeByPropertyIdDto>(query, parameters);
                 return values;
             }
         }

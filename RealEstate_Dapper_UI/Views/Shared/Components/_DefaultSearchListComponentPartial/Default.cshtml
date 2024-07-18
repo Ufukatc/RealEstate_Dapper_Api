@@ -1,6 +1,6 @@
-﻿@model List<ResultCategoryDto> 
+﻿@* @model List<ResultCategoryDto>  *@
 
-@* ResultSearchListViewModelDto *@
+@model ResultSearchListViewModelDto
 
 <section class="w3l-cover-3">
     <div class="cover top-bottom">
@@ -13,10 +13,10 @@
                         <h4>Sık Arananlar</h4>
                         <ul>
 
-                            @* @foreach (var most in Model.MostSearches)
+                            @foreach (var most in Model.MostSearches)
                             {
-                                <li><a href="#">@most.CityName</a></li>
-                            } *@
+                                <li><a href="#">@most.City</a></li>
+                            }
                         </ul>
                     </div>
                     <form asp-action="PartialSearch" asp-controller="Default" class="w3l-cover-3-gd" method="post">
@@ -24,7 +24,7 @@
                         <span class="input-group-btn">
                             <select class="btn btn-default" name="propertyCategoryId" required>
                                 <option value="" disabled selected>Gayrimenkul Türü</option>
-                                @foreach (var category in Model)
+                                @foreach (var category in Model.SearchCategories)
                                 {
                                     <option value="@category.CategoryID">@category.CategoryName</option>
                                 }
@@ -34,10 +34,10 @@
                             <select class="btn btn-default" name="city" required>
                                 <option value="" disabled selected>Şehir Seçiniz</option>
 
-                                @* @foreach (var city in Model.Cities)
+                                @foreach (var city in Model.Cities)
                                 {
-                                    <option value="@city.CityName">@city.CityName</option>
-                                } *@
+                                    <option value="@city.City">@city.City</option>
+                                }
                                 <option value="İstanbul">İstanbul</option>
                                 <option value="Eskişehir">Eskişehir</option>
                                 <option value="İzmir">İzmir</option>

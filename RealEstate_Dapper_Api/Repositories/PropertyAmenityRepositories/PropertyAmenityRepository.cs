@@ -15,9 +15,9 @@ namespace RealEstate_Dapper_Api.Repositories.PropertyAmenityRepositories
 
         public async Task<List<ResultPropertyAmenityByStatusTrueDto>> GetPropertyAmenityByStatusTrue(int id)
         {
-            string query = "Select PropertyAmenityId, Title From PropertyAmenity inner join Amenity on Amenity.AmenityId=PropertyAmenity.AmenityId Where PropertyId = @propertyId And Status = 1";
+            string query = "Select PropertyAmenityID, Title From PropertyAmenities inner join Amenities on Amenities.AmenityID=PropertyAmenities.AmenityID Where PropertyID = @propertyID And Status = 1";
             var parameters = new DynamicParameters();
-            parameters.Add("@propertyId", id);
+            parameters.Add("@propertyID", id);
             using (var connection = _context.CreateConnection())
             {
                 var values = await connection.QueryAsync<ResultPropertyAmenityByStatusTrueDto>(query, parameters);

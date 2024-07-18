@@ -1,18 +1,18 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
-using RealEstate_Dapper_UI.Dtos.WhoWeAreDtos;
+using RealEstate_Dapper_UI.Dtos.AboutUsHomePageDtos;
 using RealEstate_Dapper_UI.Models;
 using System.Text;
 
 namespace RealEstate_Dapper_UI.Controllers
 {
-    public class WhoWeAreController : Controller
+    public class AboutUsHomePageController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly ApiSettings _apiSettings;
 
-        public WhoWeAreController(IHttpClientFactory httpClientFactory, IOptions<ApiSettings> apiSettings)
+        public AboutUsHomePageController(IHttpClientFactory httpClientFactory, IOptions<ApiSettings> apiSettings)
         {
             _httpClientFactory = httpClientFactory;
             _apiSettings = apiSettings.Value;
@@ -22,30 +22,30 @@ namespace RealEstate_Dapper_UI.Controllers
         {
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri(_apiSettings.BaseUrl);
-            var responseMessage = await client.GetAsync("WhoWeAreDetail");
+            var responseMessage = await client.GetAsync("AboutUsHomePage");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultWhoWeAreDetailDto>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<ResultAboutUsHomePageDto>>(jsonData);
                 return View(values);
             }
             return View();
         }
 
         [HttpGet]
-        public IActionResult CreateWhoWeAreDetail()
+        public IActionResult CreateAboutUsHomePage()
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateWhoWeAreDetail(CreateWhoWeAreDetailDto createWhoWeAreDetailDto)
+        public async Task<IActionResult> CreateAboutUsHomePage(CreateAboutUsHomePageDto createAboutUsHomePageDto)
         {
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri(_apiSettings.BaseUrl);
-            var jsonData = JsonConvert.SerializeObject(createWhoWeAreDetailDto);
+            var jsonData = JsonConvert.SerializeObject(createAboutUsHomePageDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("WhoWeAreDetail", stringContent);
+            var responseMessage = await client.PostAsync("AboutUsHomePage", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -53,11 +53,11 @@ namespace RealEstate_Dapper_UI.Controllers
             return View();
         }
 
-        public async Task<IActionResult> DeleteWhoWeAreDetail(int id)
+        public async Task<IActionResult> DeleteAboutUsHomePage(int id)
         {
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri(_apiSettings.BaseUrl);
-            var responseMessage = await client.DeleteAsync($"WhoWeAreDetail/{id}");
+            var responseMessage = await client.DeleteAsync($"AboutUsHomePage/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -66,28 +66,28 @@ namespace RealEstate_Dapper_UI.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> UpdateWhoWeAreDetail(int id)
+        public async Task<IActionResult> UpdateAboutUsHomePage(int id)
         {
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri(_apiSettings.BaseUrl);
-            var responseMessage = await client.GetAsync($"WhoWeAreDetail/{id}");
+            var responseMessage = await client.GetAsync($"AboutUsHomePage/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<UpdateWhoWeAreDetailDto>(jsonData);
+                var values = JsonConvert.DeserializeObject<UpdateAboutUsHomePageDto>(jsonData);
                 return View(values);
             }
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateWhoWeAreDetail(UpdateWhoWeAreDetailDto updateWhoWeAreDetailDto)
+        public async Task<IActionResult> UpdateAboutUsHomePage(UpdateAboutUsHomePageDto updateAboutUsHomePageDto)
         {
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri(_apiSettings.BaseUrl);
-            var jsonData = JsonConvert.SerializeObject(updateWhoWeAreDetailDto);
+            var jsonData = JsonConvert.SerializeObject(updateAboutUsHomePageDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PutAsync("WhoWeAreDetail", stringContent);
+            var responseMessage = await client.PutAsync("AboutUsHomePage", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");

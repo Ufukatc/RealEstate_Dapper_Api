@@ -2,10 +2,10 @@
 {
     public class PropertyImageDto
     {
-        public int ProductImageId { get; set; }
+        public int PropertyImageID { get; set; }
 
         public string ImageUrl { get; set; }
 
-        public int ProductId { get; set; }
+        public int PropertyID { get; set; }
     }
 }

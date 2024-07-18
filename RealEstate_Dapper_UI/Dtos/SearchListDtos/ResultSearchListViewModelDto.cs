@@ -16,11 +16,12 @@
 
     public class ResultSearchWithCitiesDto
     {
-        public string CityName { get; set; }
+        public string City { get; set; }
     }
 
     public class ResultMostSearchesDto
     {
-        public string CityName { get; set; }
+        public string City { get; set; }
+        public bool PopularLocation { get; set; }
     }
 }
